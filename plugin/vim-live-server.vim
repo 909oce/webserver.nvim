@@ -89,16 +89,18 @@ augroup END
 
 " PHP
 function! StartPHPServer()
-    let cmd = "php -S 127.0.0.1:8080 &"
+    let cwd = getcwd()
+    let cmd = "cd " . cwd . " && php -S 127.0.0.1:8080 &"
     call system(cmd)
-    echo "PHP server started in the background."
+    echo "PHP server started in the background at " . cwd . "."
 endfunction
 
 function! StartPHPServerOnPort(port)
-    let port_num = a:port + 0  " Convert a:port to a number
-    let cmd = "php -S 127.0.0.1:" . port_num . "&"
+    let cwd = getcwd()
+    let port_num = a:port + 0
+    let cmd = "cd " . cwd . " && php -S 127.0.0.1:" . port_num . " &"
     call system(cmd)
-    echo "PHP Server started in the background on port " . port_num . "."
+    echo "PHP server started in the background at " . cwd . " on port " . port_num . "."
 endfunction
 
 function! KillPHPServer()
