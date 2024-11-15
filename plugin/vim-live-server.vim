@@ -89,7 +89,7 @@ augroup END
 
 " PHP
 function! StartPHPServer()
-    let cmd = "php -S 127.0.0.1:8080"
+    let cmd = "php -S 127.0.0.1:8080 &"
     call system(cmd)
     echo "PHP server started in the background."
 endfunction
