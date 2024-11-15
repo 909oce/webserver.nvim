@@ -87,6 +87,30 @@ augroup LiveServerKill
     autocmd VimLeave * call KillAllLiveServerInstances()
 augroup END
 
+" PHP
+function! StartPHPServer()
+    let cmd = "php -S 127.0.0.1:8080"
+    call system(cmd)
+    echo "PHP server started in the background."
+endfunction
+
+function! StartPHPServerOnPort(port)
+    let port_num = a:port + 0  " Convert a:port to a number
+    let cmd = "php -S 127.0.0.1:" . port_num . "&"
+    call system(cmd)
+    echo "PHP Server started in the background on port " . port_num . "."
+endfunction
+
+function! KillPHPServer()
+    let cmd = "pkill -f 'php'"
+    call system(cmd)
+endfunction
+
+augroup PHPServerKill
+    autocmd!
+    autocmd VimLeave * call KillPHPServer()
+augroup END
+
 " Call Commands
 command! StartBrowserSync call StartBrowserSync()
 command! StartLiveServer call StartLiveServer()
@@ -96,3 +120,6 @@ command! KillBrowserSync call KillBrowserSync()
 command! KillLiveServer call KillLiveServer()
 command! -nargs=1 KillBrowserSyncOnPort call KillBrowserSyncOnPort(<f-args>)
 command! -nargs=1 KillLiveServerOnPort call KillLiveServerOnPort(<f-args>)
+command! StartPHPServer call StartPHPServer()
+command! -nargs=1 StartPHPServerOnPort call StartPHPServerOnPort()
+command! KillPHPServer call KillPHPServer()
