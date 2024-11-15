@@ -92,7 +92,7 @@ function! StartPHPServer()
     let cwd = getcwd()
     let cmd = "cd " . cwd . " && php -S 127.0.0.1:8080 &"
     call system(cmd)
-    echo "PHP server started in the background at " . cwd . "."
+    echo "PHP server started in the background."
 endfunction
 
 function! StartPHPServerOnPort(port)
@@ -100,7 +100,7 @@ function! StartPHPServerOnPort(port)
     let port_num = a:port + 0
     let cmd = "cd " . cwd . " && php -S 127.0.0.1:" . port_num . " &"
     call system(cmd)
-    echo "PHP server started in the background at " . cwd . " on port " . port_num . "."
+    echo "PHP server started in the background on port " . port_num . "."
 endfunction
 
 function! KillPHPServer()
