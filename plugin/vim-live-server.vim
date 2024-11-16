@@ -89,11 +89,11 @@ augroup END
 
 " PHP
 function! StartPHPServer()
-    if expand("%:p:h") != getcwd()
-        execute "lcd " . expand("%:p:h")
-    endif
-    let cwd = getcwd()
-    let cmd = "cd " . cwd . " && php -S 127.0.0.1:8080 & $BROWSER 127.0.01:8080 &"
+    "if expand("%:p:h") != getcwd()
+    "    execute "lcd " . expand("%:p:h")
+    "endif
+    "let cwd = getcwd()
+    let cmd = "php -S 127.0.0.1:8080 & $BROWSER 127.0.01:8080 &"
     call system(cmd)
     echo "PHP server started in the background."
 endfunction
